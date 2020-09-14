@@ -11,7 +11,14 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BacktraceLoger : NSObject
++ (NSString *)backtraceOfAllThread;
++ (NSString *)backtraceOfMainThread;
++ (NSString *)backtraceOfCurrentThread;
++ (NSString *)backtraceOfNSThread:(NSThread *)thread;
 
++ (void)logMain;
++ (void)logCurrent;
++ (void)logAllThread;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -7,6 +7,7 @@
 //
 
 #import "RunloopMonitor.h"
+#import "BacktraceLoger.h"
 
 @interface RunloopMonitor ()
 @property (nonatomic, assign) int outTime;
@@ -133,6 +134,7 @@ static RunloopMonitor *_instance = nil;
                 });
                 [NSThread sleepForTimeInterval: time_out_interval];
                 if (timeOut) {
+                    [BacktraceLoger logMain];
                 }
                 dispatch_wait([RunloopMonitor shareInstance].eventSemphore, DISPATCH_TIME_FOREVER);
             }
@@ -152,6 +154,7 @@ static RunloopMonitor *_instance = nil;
                     if (++[RunloopMonitor shareInstance].outTime < 5) {
                         continue;
                     }
+                    [BacktraceLoger logMain];
                     [NSThread sleepForTimeInterval: restore_interval];
                 }
             }
